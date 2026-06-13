@@ -1,0 +1,6 @@
+server.mjs
+dist/
+node_modules/
+.git/
+.env
+.env.local

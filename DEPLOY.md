@@ -18,6 +18,7 @@ After the first Vercel deploy, replace `https://your-project-name.vercel.app/` w
 When importing the project into Vercel:
 
 ```text
+Root Directory: outputs/spotify-language-sorter
 Framework Preset: Other
 Build Command: npm run build
 Output Directory: dist
@@ -40,6 +41,8 @@ The Client ID is not a secret, but using an environment variable keeps deploymen
 4. Deploy.
 5. Add the final Vercel production URL as a Spotify redirect URI.
 6. Redeploy if needed, then test Connect.
+
+If Vercel shows `FUNCTION_INVOCATION_FAILED`, the deployment is probably running server code instead of serving `dist`. Check that the project root is this folder, the framework preset is `Other`, and the output directory is `dist`.
 
 ## Important Spotify limit
 
