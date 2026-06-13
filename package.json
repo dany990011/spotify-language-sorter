@@ -1,0 +1,11 @@
+{
+  "name": "spotify-language-sorter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "node server.mjs",
+    "check": "node --check app.js && node --check server.mjs && node --check scripts/build.mjs"
+  }
+}

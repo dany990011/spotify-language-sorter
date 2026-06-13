@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Song Language Sorter</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar" aria-label="Application controls">
+        <div>
+          <p class="eyebrow">Spotify playlist organizer</p>
+          <h1>Song Language Sorter</h1>
+        </div>
+        <div class="auth-panel">
+          <span id="appModeBadge" class="profile-badge">Ready</span>
+          <button id="loginButton" class="primary-button" type="button">
+            <span aria-hidden="true">></span>
+            Connect
+          </button>
+          <button id="logoutButton" class="icon-button hidden" type="button" aria-label="Sign out" title="Sign out">
+            x
+          </button>
+        </div>
+      </section>
+
+      <section id="statusPanel" class="status-panel" role="status" aria-live="polite"></section>
+
+      <section class="workspace">
+        <aside class="source-panel">
+          <div class="panel-heading">
+            <h2>Source</h2>
+            <span id="profileBadge" class="profile-badge">Offline</span>
+          </div>
+
+          <div class="segmented-control" role="tablist" aria-label="Song source">
+            <button id="likedSourceButton" class="segment active" type="button" aria-pressed="true">Liked songs</button>
+            <button id="playlistSourceButton" class="segment" type="button" aria-pressed="false">Playlist</button>
+          </div>
+
+          <label id="playlistField" class="input-field hidden">
+            <span>Playlist URL or ID</span>
+            <input id="playlistInput" type="text" autocomplete="off" spellcheck="false" placeholder="https://open.spotify.com/playlist/..." />
+          </label>
+
+          <div class="settings-grid">
+            <label class="input-field">
+              <span>Minimum songs</span>
+              <input id="minimumInput" type="number" min="1" max="999" value="2" />
+            </label>
+            <label class="input-field">
+              <span>Main language</span>
+              <select id="mainLanguageSelect">
+                <option value="auto">Auto detect</option>
+              </select>
+            </label>
+            <label class="checkbox-field">
+              <input id="includeMainLanguage" type="checkbox" />
+              <span>Create main language playlist</span>
+            </label>
+            <label class="checkbox-field">
+              <input id="privatePlaylists" type="checkbox" checked />
+              <span>Create private playlists</span>
+            </label>
+          </div>
+
+          <button id="analyzeButton" class="primary-button wide" type="button" disabled>
+            <span aria-hidden="true">~</span>
+            Analyze songs
+          </button>
+        </aside>
+
+        <section class="results-panel">
+          <div class="panel-heading">
+            <h2>Review</h2>
+            <div class="meter">
+              <span id="songCount">0 songs</span>
+              <span id="languageCount">0 languages</span>
+            </div>
+          </div>
+
+          <div id="emptyState" class="empty-state">
+            <div class="empty-art" aria-hidden="true"></div>
+            <p>Connect Spotify, pick a source, then review the language groups before anything is created.</p>
+          </div>
+
+          <div id="languageGroups" class="language-groups" aria-label="Detected language groups"></div>
+
+          <div class="creation-bar">
+            <div>
+              <strong id="selectedSummary">No playlists selected</strong>
+              <span id="selectedDetail">Small one-off language buckets are skipped by default.</span>
+            </div>
+            <button id="createButton" class="primary-button" type="button" disabled>
+              <span aria-hidden="true">+</span>
+              Create playlists
+            </button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <template id="languageCardTemplate">
+      <article class="language-card">
+        <header>
+          <label class="language-toggle">
+            <input class="language-checkbox" type="checkbox" />
+            <span class="language-name"></span>
+          </label>
+          <div class="language-actions">
+            <span class="language-total"></span>
+            <button class="genre-split-button" type="button">Genres</button>
+          </div>
+        </header>
+        <div class="genre-list"></div>
+        <div class="track-list"></div>
+      </article>
+    </template>
+
+    <template id="trackRowTemplate">
+      <div class="track-row">
+        <img class="track-art" alt="" />
+        <div class="track-copy">
+          <strong class="track-title"></strong>
+          <span class="track-artist"></span>
+        </div>
+        <select class="track-language" aria-label="Correct detected language"></select>
+      </div>
+      </template>
+
+    <script src="./config.js"></script>
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
